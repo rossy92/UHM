@@ -21,9 +21,8 @@ class TransportConfig(BaseSettings):
     disable_ssl_verification_globally: bool = Field(
         False, description="Disable SSL verification for all requests globally."
     )
-   all_proxy: bool = Field(False, description="Enable proxy for all routes by default")
-    transport_routes: Dict[str, RouteConfig] = Field(
-        default_factory=dict, description="Pattern-based route configuration"
+    all_proxy: bool = Field(
+        False, description="Enable proxy for all routes by default"
     )
     timeout: int = Field(60, description="Timeout for HTTP requests in seconds")
 
