@@ -16,7 +16,7 @@ class TransportConfig(BaseSettings):
     """Main proxy configuration"""
 
     proxy_url: Optional[str] = Field(
-        "http://try4g41n:pl34s3w0rk@31.59.20.176:6754/", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
+        "..." , description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
     )
     disable_ssl_verification_globally: bool = Field(
         False, description="Disable SSL verification for all requests globally."
@@ -24,7 +24,12 @@ class TransportConfig(BaseSettings):
     all_proxy: bool = Field(
         False, description="Enable proxy for all routes by default"
     )
-    timeout: int = Field(60, description="Timeout for HTTP requests in seconds")
+    transport_routes: Dict[str, RouteConfig] = Field(
+        default_factory=dict, description="Pattern-based route configuration"
+    )
+    timeout: int = Field(
+        60, description="Timeout for HTTP requests in seconds"
+    )
 
     class Config:
         env_file = ".env"
