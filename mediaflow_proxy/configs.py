@@ -16,7 +16,7 @@ class TransportConfig(BaseSettings):
     """Main proxy configuration"""
 
     proxy_url: Optional[str] = Field(
-        "http://0nlymine-rotate:mikego4way@p.webshare.io:80", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
+        "http://45.43.81.206:5853", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
     )
     disable_ssl_verification_globally: bool = Field(
         False, description="Disable SSL verification for all requests globally."
