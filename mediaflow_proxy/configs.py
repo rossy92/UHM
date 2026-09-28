@@ -21,7 +21,7 @@ class TransportConfig(BaseSettings):
     disable_ssl_verification_globally: bool = Field(
         False, description="Disable SSL verification for all requests globally."
     )
-    all_proxy: bool = Field(True, description="Enable proxy for all routes by default")    
+   all_proxy: bool = Field(False, description="Enable proxy for all routes by default")
     transport_routes: Dict[str, RouteConfig] = Field(
         default_factory=dict, description="Pattern-based route configuration"
     )
