@@ -93,20 +93,29 @@ app.add_middleware(UIAccessControlMiddleware)
 async def verify_api_key(api_key: str = Security(api_password_query), api_key_alt: str = Security(api_password_header)):
     """
     Verifies the API key for the request.
-
-    Args:
-        api_key (str): The API key to validate.
-        api_key_alt (str): The alternative API key to validate.
-
-    Raises:
-        HTTPException: If the API key is invalid.
     """
+    logger.error(
+        "API AUTH DEBUG: configured=%s | query_present=%s | header_present=%s | query_len=%s | header_len=%s",
+        bool(settings.api_password),
+        api_key is not None,
+        api_key_alt is not None,
+        len(api_key) if api_key else 0,
+        len(api_key_alt) if api_key_alt else 0,
+    )
+
     if not settings.api_password:
+        logger.error("API AUTH DEBUG: no API_PASSWORD configured")
         return
 
-    if api_key == settings.api_password or api_key_alt == settings.api_password:
+    if api_key == settings.api_password:
+        logger.error("API AUTH DEBUG: QUERY MATCH")
         return
 
+    if api_key_alt == settings.api_password:
+        logger.error("API AUTH DEBUG: HEADER MATCH")
+        return
+
+    logger.error("API AUTH DEBUG: NO MATCH")
     raise HTTPException(status_code=403, detail="Could not validate credentials")
 
 
