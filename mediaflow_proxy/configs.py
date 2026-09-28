@@ -16,7 +16,7 @@ class TransportConfig(BaseSettings):
     """Main proxy configuration"""
 
     proxy_url: Optional[str] = Field(
-        "http://onlymin3:st0pusing@31.59.20.176:6754", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
+        "http://0nlymine:mikego4way@45.38.107.97:6014", description="Primary proxy URL. Example: socks5://user:pass@proxy:1080 or http://proxy:8080"
     )
     disable_ssl_verification_globally: bool = Field(
         False, description="Disable SSL verification for all requests globally."
