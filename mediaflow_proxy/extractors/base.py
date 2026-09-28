@@ -141,13 +141,14 @@ class BaseExtractor(ABC):
                         resp_headers = dict(response.headers)
 
                         if raise_on_status and status >= 400:
-                            body_preview = text[:500]
-                            logger.debug(
-                                "HTTP error for %s (status=%s) -- body preview: %s",
-                                url,
-                                status,
-                                body_preview,
-                            )
+                        body_preview = text[:500]
+                        logger.error("HTTP ERROR - URL: %s | STATUS: %s", url, status)
+                        logger.debug(
+                            "HTTP error for %s (status=%s) -- body preview: %s",
+                            url,
+                            status,
+                            body_preview,
+                        )
                             raise DownloadError(status, f"HTTP error {status} while requesting {url}")
 
                         return HttpResponse(
